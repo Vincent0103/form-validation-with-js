@@ -4,6 +4,7 @@ module.exports = {
   mode: 'development',
   entry: {
     index: './src/index.js',
+    formValidationHandler: './src/formValidationHandler.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -22,10 +23,6 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
-      },
-      {
-        test: /\.svg$/i,
-        use: 'raw-loader',
       },
     ],
   },

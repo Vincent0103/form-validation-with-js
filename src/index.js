@@ -1,3 +1,5 @@
+import handleForm from './formValidationHandler';
+
 window.addEventListener('DOMContentLoaded', () => {
-  console.log('Setup done!');
+  handleForm();
 });
