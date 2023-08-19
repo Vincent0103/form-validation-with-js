@@ -1,3 +1,5 @@
+import highFiveIcon from './assets/hand-back-left.svg';
+
 function areValueMissing(inputsContainer) {
   let valuesMissing = false;
   inputsContainer.forEach((input) => {
@@ -12,14 +14,15 @@ function areValueMissing(inputsContainer) {
 function checkValueMissingOnInput(inputsContainer) {
   inputsContainer.forEach((input) => {
     input.addEventListener('input', () => {
-      console.log('inputting');
       areValueMissing(inputsContainer);
     });
   });
 }
 
-function checkValueMissingOnSubmit(inputsContainer) {
-  areValueMissing(inputsContainer);
+function checkValueMissingOnSubmit(inputsContainer, submitBtn) {
+  submitBtn.addEventListener('click', () => {
+    areValueMissing(inputsContainer);
+  });
 }
 
 function checkValidEmailInput(emailInput) {
@@ -106,7 +109,7 @@ function checkPwdsMatch(pwdInput, confirmPwdInput) {
   });
 }
 
-function handleForm() {
+function addFormValidation() {
   const formContainer = document.querySelector('.form-container');
   const inputsContainer = formContainer.querySelectorAll('.input-container > input');
   const emailInput = formContainer.querySelector('#mail');
@@ -121,10 +124,45 @@ function handleForm() {
   checkValidZIPCode(ZIPInput);
   checkValidPwd(pwdInput);
   checkPwdsMatch(pwdInput, confirmPwdInput);
-  submitBtn.addEventListener('click', () => {
-    checkValueMissingOnSubmit(inputsContainer);
-  });
+  checkValueMissingOnSubmit(inputsContainer, submitBtn);
   checkValueMissingOnInput(inputsContainer);
+}
+
+function willFormValidate(inputsContainer) {
+  let willValidate = true;
+  inputsContainer.forEach((input) => {
+    if (!input.validity.valid) {
+      willValidate = false;
+    }
+  });
+
+  return willValidate;
+}
+
+function handleForm() {
+  addFormValidation();
+  const formContainer = document.querySelector('.form-container');
+  const inputsContainer = formContainer.querySelectorAll('.input-container > input');
+  const submitBtn = formContainer.querySelector('button[type="submit"]');
+
+  submitBtn.addEventListener('click', () => {
+    if (willFormValidate(inputsContainer)) {
+      formContainer.innerHTML = '';
+      formContainer.classList.add('high-five-display');
+
+      const highFiveContainer = document.createElement('div');
+      highFiveContainer.classList.add('high-five-container');
+      formContainer.appendChild(highFiveContainer);
+
+      const myHighFiveIcon = new Image();
+      myHighFiveIcon.src = highFiveIcon;
+
+      const h1 = document.createElement('h1');
+      h1.textContent = 'High Five!';
+
+      highFiveContainer.append(myHighFiveIcon, h1);
+    }
+  });
 }
 
 export default handleForm;

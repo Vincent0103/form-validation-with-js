@@ -70,7 +70,7 @@ input {
 
 input,
 select {
-  transition: border-color .1s;
+  transition: border-color .1s, background-color .2s;
 }
 
 input:focus,
@@ -98,6 +98,31 @@ select:hover:not(:focus) {
   cursor: pointer;
 }
 
-.invalid {
+:invalid {
   background-color: #ffd6d7;
+}
+
+:valid:not(#country) {
+  background-color: rgb(216, 255, 216);
+}
+
+.high-five-display {
+  display: block;
+}
+
+.high-five-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.high-five-container > img {
+  height: 70%;
+}
+
+.high-five-container > h1 {
+  font-size: 2.5rem;
 }
