@@ -144,23 +144,27 @@ function handleForm() {
   const formContainer = document.querySelector('.form-container');
   const inputsContainer = formContainer.querySelectorAll('.input-container > input');
   const submitBtn = formContainer.querySelector('button[type="submit"]');
+  const formContainerContents = document.querySelectorAll('.form-container > *');
 
   submitBtn.addEventListener('click', () => {
     if (willFormValidate(inputsContainer)) {
       formContainer.innerHTML = '';
-      formContainer.classList.add('high-five-display');
 
-      const highFiveContainer = document.createElement('div');
-      highFiveContainer.classList.add('high-five-container');
-      formContainer.appendChild(highFiveContainer);
+      setTimeout(() => {
+        formContainer.classList.add('high-five-display');
 
-      const myHighFiveIcon = new Image();
-      myHighFiveIcon.src = highFiveIcon;
+        const highFiveContainer = document.createElement('div');
+        highFiveContainer.classList.add('high-five-container');
+        formContainer.appendChild(highFiveContainer);
 
-      const h1 = document.createElement('h1');
-      h1.textContent = 'High Five!';
+        const myHighFiveIcon = new Image();
+        myHighFiveIcon.src = highFiveIcon;
 
-      highFiveContainer.append(myHighFiveIcon, h1);
+        const h1 = document.createElement('h1');
+        h1.textContent = 'High Five!';
+
+        highFiveContainer.append(myHighFiveIcon, h1);
+      }, 200);
     }
   });
 }
