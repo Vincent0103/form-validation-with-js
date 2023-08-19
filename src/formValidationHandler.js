@@ -144,7 +144,6 @@ function handleForm() {
   const formContainer = document.querySelector('.form-container');
   const inputsContainer = formContainer.querySelectorAll('.input-container > input');
   const submitBtn = formContainer.querySelector('button[type="submit"]');
-  const formContainerContents = document.querySelectorAll('.form-container > *');
 
   submitBtn.addEventListener('click', () => {
     if (willFormValidate(inputsContainer)) {
